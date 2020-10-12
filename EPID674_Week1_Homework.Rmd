@@ -1,0 +1,41 @@
+---
+title: "EPID674 Epidemiologic Data Analysis using R"
+subtitle: "Homework 1"
+author: "Insert Your Name Here"
+date: "Last compiled on `r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Problem 1A
+## 1A.  What is the boiling point of water (100 oC) in degrees F?
+```{r problem 1A}
+#Insert your code for problem 1A here
+```
+#Interpret your answer for problem 1A here
+
+
+## 1B.  What is today's temperature in degree C? (e.g. 77 oF)
+```{r problem 1B}
+#Insert your code for problem 1B here
+```
+#Interpret your answer for problem 1B here
+
+
+## 2.  Make a vector ‘x’ as a series of even numbers from 2 to 20.  Make a vector ‘y’ as a series of integers running from 1 to 10. 
+# Compute x+y, x-y, x*y, and x/y
+```{r problem 2}
+#Insert your code for problem 2 here
+```
+#Interpret your answer for problem 2 here
+
+
+## 3.  Compute the value of 1^2 + 2^2 + 3^2 + ... + 100^2
+```{r problem 3}
+#Insert your code for problem 3 here
+```
+#Interpret your answer for problem 3 here
