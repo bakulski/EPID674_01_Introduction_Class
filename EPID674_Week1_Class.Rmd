@@ -4,7 +4,6 @@ subtitle: "Getting Started with R"
 author: "Kelly Bakulski"
 date: "Last compiled on `r format(Sys.Date(), '%B %d, %Y')`"
 output:
-  word_document: default
   html_document: 
     toc: true
     toc_float: true
