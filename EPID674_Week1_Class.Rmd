@@ -127,7 +127,7 @@ class(z)
 
 
 # What are the differences between ( ) and [ ] ?
-```{r indexing vector}
+```{r indexing_vector}
 length(z) # Rounded parentheses are for functions
 z[3] # Square brackets are for looking in objects, this is also called "indexing"
 z[2] # Find value based on position
@@ -142,7 +142,7 @@ x[x<3]
 ```
 
 # Specify options in a function
-```{r options in a function}
+```{r options_in_a_function}
 seq(from = 10, to = 23, by = 1) # count from 10 to 23 by 1
 seq(from = 10, to = 23) # equivalent
 seq(10, 23) # equivalent
@@ -157,7 +157,7 @@ seq(from = -1, to = 11, by = 3) # count from -1 to 11 by 3
 * The most comfortable and familiar class/data type for many of you will be `data.frame`
 * You can think of these as essentially Excel spreadsheets with rows (usually subjects or observations) and columns (usually variables)
 `data.frame`s are somewhat advanced objects in R; we will start with simpler objects;
-```{r data frame}
+```{r data_frame}
 # Combine x and y vectors by column into a data frame and assign it to an object called 'df'
 df <- data.frame(x, y, z)
 df # Look at df
@@ -166,7 +166,7 @@ df$y
 ```
 
 # Index (look around) inside the data frame based on the position
-```{r indexing data frame}
+```{r indexing_data_frame}
 #Index based on position
 df[3, 1] # structure: df[rows,columns]
 df[4, ]
@@ -186,7 +186,7 @@ df[df[, 1] > 2, ]  #Same as above
 ```
 
 # Perform calculations on the data frame
-```{r calculations data frame}
+```{r calculations_data_frame}
 sum(df[, 1])
 sum(x)
 ```
