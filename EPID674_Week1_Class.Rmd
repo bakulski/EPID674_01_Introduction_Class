@@ -219,4 +219,4 @@ df #What do you get?
 q()
 ```
 
-
+Click the **Knit** button to rerun all of the code and compile an output document.
