@@ -64,6 +64,13 @@ Test your comprehension: Try evaluating the following:
 # Best practice is to take a ton of notes to help your future self and anyone who comes later to re-run your code
 ```
 
+<<<<<<< Updated upstream
+=======
+## Make your first R objects
+```{r make objects}
+#### Remarks or comments can be put behind the # symbol
+#### Anything from the # to the end of the line will be ignored by R
+>>>>>>> Stashed changes
 
 ## Make your first R objects
 * You can create variables from within the R environment and from files on your computer
@@ -100,14 +107,14 @@ x == x
 x <- 1:4 # This writes over the previous x object. No warning or error messages!
 x
 length(x) # length is a function for checking how long an object is
-x <- seq(from=1, to=4, by=1) # Create a vector counting from 1 to 4 by 1
+x <- seq(from = 1, to = 4, by = 1) # Create a vector counting from 1 to 4 by 1
 x
 x <- c(1, 2, 3, 4) # Combine elements into a vector
 x
 x <- c(2, 3, 4, 1)
 x
 length(x)
-y <- rep(7, times=4) # Create a vector with four 7's by rep() and assign it to y
+y <- rep(7, times = 4) # Create a vector with four 7's by rep() and assign it to y
 y
 ```
 
@@ -133,12 +140,12 @@ z[3] # Square brackets are for looking in objects, this is also called "indexing
 z[2] # Find value based on position
 z[1:3]
 
-#Find positions meeting criteria
-x<3 #Provides True/False for whether meets the criteria
-which(x<3) #Finds the positions of the Trues
+# Find positions meeting criteria
+x < 3 # Provides True/False for whether meets the criteria
+which(x < 3) # Finds the positions of the Trues
 
-#Find values meeting criteria
-x[x<3]
+# Find values meeting criteria
+x[x < 3]
 ```
 
 # Specify options in a function
@@ -149,7 +156,7 @@ seq(10, 23) # equivalent
 seq(10, -3) # count from 10 to -3
 seq(from = -1, to = 11, by = 3) # count from -1 to 11 by 3
 
-#Note, you have all of the tools to complete homework 1
+# Note, you have all of the tools to complete homework 1
 ```
 
 
@@ -166,8 +173,13 @@ df$y
 ```
 
 # Index (look around) inside the data frame based on the position
+<<<<<<< Updated upstream
 ```{r indexing_data_frame}
 #Index based on position
+=======
+```{r indexing data frame}
+# Index based on position
+>>>>>>> Stashed changes
 df[3, 1] # structure: df[rows,columns]
 df[4, ]
 df[, 1]
@@ -176,13 +188,13 @@ df[c(3, 1, 3), ]
 df[c(FALSE, TRUE, TRUE, FALSE), ]
 df[c(T, F, F, T), ]
 
-#Index based on value
-df$x>2 #Find a logical vector (True/False) of the rows that meet the value of interest (in this case x>2)
-df[, 1] > 2 #Same as above
-which(df[,1]>2) #Find rows that meet the criteria, similar to line above
+# Index based on value
+df$x > 2 # Find a logical vector (True/False) of the rows that meet the value of interest (in this case x>2)
+df[, 1] > 2 # Same as above
+which(df[, 1] > 2) # Find rows that meet the criteria, similar to line above
 
-df[df$x>2,] #Now show the rows that are True
-df[df[, 1] > 2, ]  #Same as above
+df[df$x > 2, ] # Now show the rows that are True
+df[df[, 1] > 2, ] # Same as above
 ```
 
 # Perform calculations on the data frame
@@ -193,11 +205,11 @@ sum(x)
 
 # Recode a value in the data frame based on the position
 ```{r recode}
-df 
+df
 df[3, 2] <- 5 # recode a value
-#What do you expect?
-df #What do you get?
-#Do they match?
+# What do you expect?
+df # What do you get?
+# Do they match?
 ```
 
 ## Common new R users frustrations
