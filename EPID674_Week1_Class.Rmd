@@ -4,16 +4,37 @@ subtitle: "Getting Started with R"
 author: "Kelly Bakulski"
 date: "Last compiled on `r format(Sys.Date(), '%B %d, %Y')`"
 output:
-  html_document: 
-    toc: true
-    toc_float: true
+  html_document:
+    toc: yes
+    toc_float: yes
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
-## R Markdown
+## Programming language: R
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This course will introduce the R statistical programming language for
+epidemiologic analyses. R statistical software is a freely available,
+versatile, and powerful program for statistical computing and graphics
+(<https://www.r-project.org/>). A helpful interface for R is provided by
+RStudio (<http://www.rstudio.com/>). For a shared educational
+environment in this class, we will use the online version of R and
+RStudio called RStudio Cloud (<https://rstudio.cloud/>).
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Authoring Software: RMarkdown
+
+This is an R Markdown document. Markdown is a simple formatting
+programming language for authoring HTML, PDF, and Microsoft Word
+documents. For more details on using R Markdown see
+<http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that
+includes both content as well as the output of any embedded R code
+chunks within the document.
+
+You can embed an R code chunk like this: Here we load the `knitr`
+package into our current R session to make useful functions available.
 
 ```{r setup, include=FALSE}
 library(knitr)
@@ -23,20 +44,25 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Chapter 1, Getting Started with R
 
 ## Explaining commands/output
-An R command (we'll also call it code or a code chunk) will be grey and look like this
+
+An R command (we'll also call it code or a code chunk) will be grey and
+look like this. The text in this section will be talking to R.
+
 ```{r code}
 print("I'm code")
 ```
-And then directly after it, will be the output of the code.  
-So, `print("I'm code")` is the code chunk and [1] "I'm code" is the output.
+
+Directly after the code chunk will be the output of the code.\
+So `print("I'm code")` is the code chunk and [1] "I'm code" is the
+output.
 
 ## R as a calculator
- The R console is a full calculator
- Try to play around with it:
-     +, -, /, * are add, subtract, divide and multiply
-     ^ or ** is power
-     parentheses -- ( and ) -- work with order of operations 
-```{r calcDemo}
+
+The R console is a full calculator Try to play around with it: +, -, /,
+\* are add, subtract, divide and multiply \^ or \*\* is power
+parentheses -- ( and ) -- work with order of operations
+
+```{r calculator_demo}
 2 + 2
 2 * 4
 2 ^ 3
@@ -44,15 +70,17 @@ So, `print("I'm code")` is the code chunk and [1] "I'm code" is the output.
 2 + (2 * 3)^2
 (1 + 3) / 2 + 45
 ```
-Note, when you type your command, R inherently thinks you want to print the result. 
 
-Test your comprehension: Try evaluating the following:
- `2 + 2 * 3 / 4 -3`
- `2 * 3 / 4 * 2`
- `2^4 - 1`
+Note, when you type your command, R inherently thinks you want to print
+the result.
+
+Test your comprehension: Make an R code chunk and try evaluating the
+following: 2 + 2 \* 3 / 4 -3 2 \* 3 / 4 \* 2 2\^4 - 1
 
 ## Commenting in Scripts
+
 `#` is the comment symbol in R
+
 ```{r comments}
 # Comments in R follow the hashtag symbol
 # Anything from the # to the end of the line (on the right) will be ignored by R. Note the color of your code changes after you use a hashtag
@@ -64,11 +92,13 @@ Test your comprehension: Try evaluating the following:
 # Best practice is to take a ton of notes to help your future self and anyone who comes later to re-run your code
 ```
 
-
 ## Make your first R objects
-* You can create variables from within the R environment and from files on your computer
-* R uses "<-"or "=" to assign values to a variable name
-* Variable names are case-sensitive, i.e. X and x are different
+
+-   You can create variables from within the R environment and from
+    files on your computer
+-   R uses "\<-"or "=" to assign values to a variable name
+-   Variable names are case-sensitive, i.e. X and x are different
+
 ```{r make_objects}
 x <- 4 # x is assigned the value of 4. # Same as: x = 2
 x # See what x is
@@ -78,9 +108,10 @@ z <- x * (x + y) # z is assigned the value of x*(x+y)
 z # See what z is
 ```
 
-
 # Perform some calculations with 'x' and observe the results
+
 You can perform functions to entire vectors of numbers very easily.
+
 ```{r calculations_vector}
 x + 4
 x - 3
@@ -93,9 +124,16 @@ x == x
 ```
 
 # Assign a vector of integers from 1 to 4 to the object x, using multiple different functions
-* Here we introduce "1 dimensional" classes; often referred to as 'vectors'
-* The function `c()` collects/combines/joins single R objects into a vector of R objects. It is mostly used for creating vectors of numbers, character strings, and other data types. 
-* The function `length()`: Get or set the length of vectors (including lists) and factors, and of any other R object for which a method has been defined.
+
+-   Here we introduce "1 dimensional" classes; often referred to as
+    'vectors'
+-   The function `c()` collects/combines/joins single R objects into a
+    vector of R objects. It is mostly used for creating vectors of
+    numbers, character strings, and other data types.
+-   The function `length()`: Get or set the length of vectors (including
+    lists) and factors, and of any other R object for which a method has
+    been defined.
+
 ```{r make_integer_vector}
 x <- 1:4 # This writes over the previous x object. No warning or error messages!
 x
@@ -112,6 +150,7 @@ y
 ```
 
 # Make a character vector
+
 ```{r make_character_vector}
 z <- c("UM", "SPH", "EPI", "Kelly")
 z <- c("University of Michigan", "School of Public Health", "Epidemiology", "John Snow")
@@ -119,14 +158,28 @@ z
 ```
 
 ## R variable classes
-* Vectors can have multiple sets of observations, but each observation has to be the same class.
+
+-   Vectors can have multiple sets of observations, but each observation
+    has to be the same class.
+
 ```{r vector_class}
 class(x)
 class(z)
 ```
 
+## Use the help viewer
+
+Any time I use a new function, I navigate to the lower right panel and
+search for the function. This describes the purpose of the function, the
+default settings, and the options you can change.
+
+```{r get_help}
+# Another option is to use the 'help' function to search. Look in the lower right panel and the same view will appear.
+help(class)
+```
 
 # What are the differences between ( ) and [ ] ?
+
 ```{r indexing_vector}
 length(z) # Rounded parentheses are for functions
 z[3] # Square brackets are for looking in objects, this is also called "indexing"
@@ -142,6 +195,7 @@ x[x<3]
 ```
 
 # Specify options in a function
+
 ```{r options_in_a_function}
 seq(from = 10, to = 23, by = 1) # count from 10 to 23 by 1
 seq(from = 10, to = 23) # equivalent
@@ -152,11 +206,13 @@ seq(from = -1, to = 11, by = 3) # count from -1 to 11 by 3
 #Note, you have all of the tools to complete homework 1
 ```
 
-
 # Make your first data frame
-* The most comfortable and familiar class/data type for many of you will be `data.frame`
-* You can think of these as essentially Excel spreadsheets with rows (usually subjects or observations) and columns (usually variables)
-`data.frame`s are somewhat advanced objects in R; we will start with simpler objects;
+
+-   The most comfortable and familiar class/data type for many of you
+    will be `data.frame`
+-   You can think of these as essentially Excel spreadsheets with rows
+    (usually subjects or observations) and columns (usually variables)
+
 ```{r data_frame}
 # Combine x and y vectors by column into a data frame and assign it to an object called 'df'
 df <- data.frame(x, y, z)
@@ -166,15 +222,14 @@ df$y
 ```
 
 # Index (look around) inside the data frame based on the position
+
 ```{r indexing_data_frame}
 #Index based on position
 df[3, 1] # structure: df[rows,columns]
 df[4, ]
 df[, 1]
 df[c(1, 2, 3), ] # Read your R code from the inside out. Start with the innermost set of parentheses.
-df[c(3, 1, 3), ]
 df[c(FALSE, TRUE, TRUE, FALSE), ]
-df[c(T, F, F, T), ]
 
 #Index based on value
 df$x>2 #Find a logical vector (True/False) of the rows that meet the value of interest (in this case x>2)
@@ -186,12 +241,14 @@ df[df[, 1] > 2, ]  #Same as above
 ```
 
 # Perform calculations on the data frame
+
 ```{r calculations_data_frame}
 sum(df[, 1])
 sum(x)
 ```
 
 # Recode a value in the data frame based on the position
+
 ```{r recode}
 df 
 df[3, 2] <- 5 # recode a value
@@ -201,22 +258,51 @@ df #What do you get?
 ```
 
 ## Common new R users frustrations
-1.  Different versions of software
-    - RStudio Cloud solves this
-2.  Working directory problems: trying to read files that R "can't find"
-    - RStudio Cloud solves this and so does RStudio Projects
-3.  Data type problems (is that a string or a number?)
-    - discussed throughout
-4.  Typos (R is **case sensitive**, `x` and `X` are different)
-    - RStudio helps with "tab completion"
-    - discussed throughout
-5.  R often does not include any error/warning messages. Need to train yourself in 1) What do I expect?, 2) What do I get?, and 3) Do they match?
 
+1.  Different versions of software
+
+    -   RStudio Cloud solves this
+
+2.  Working directory problems: trying to read files that R "can't find"
+
+    -   RStudio Cloud solves this and so does RStudio Projects
+
+3.  Data type problems (is that a character or a numeric object?)
+
+    -   discussed throughout
+
+4.  Typos (R is **case sensitive**, `x` and `X` are different)
+
+    -   RStudio helps with "tab completion"
+    -   discussed throughout
+
+5.  R often does not include any error/warning messages. Need to train
+    yourself in the following sequence:
+
+    -   
+
+        1)  What do I expect?
+
+    -   
+
+        2)  What do I get?
+
+    -   and 3) Do they match?
 
 # Remember to save your R script!
-# To exit R 
+
+# To exit R
+
 ```{r exit, eval=FALSE}
 q()
 ```
 
-Click the **Knit** button to rerun all of the code and compile an output document.
+Click the **Knit** button at the top of this script to run all of the
+code together and generate a markdown report!
+
+## Review
+
+-   Creating a new script
+-   Using R as a calculator
+-   Assigning values to objects (vectors and data frames)
+-   Performing algebra on numeric variables
