@@ -334,6 +334,12 @@ apples_pubhlth
 
 # Do they match?
 ```
+# Make a new code chunk
+* +C Insert button at the top of this window next to the Prev/Next chunk arrows and Run button
+```{r}
+
+```
+
 
 ## Common new R users frustrations
 
