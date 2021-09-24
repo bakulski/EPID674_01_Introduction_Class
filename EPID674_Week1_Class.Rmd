@@ -121,7 +121,7 @@ fruits <- c("apple",
             "grape",
             "strawberry",
             "lime")
-#compared to:
+# compared to:
 fruits <- c("apple","pear","orange","cherry","grape","strawberry","lime")
 ```
 
@@ -129,40 +129,49 @@ fruits <- c("apple","pear","orange","cherry","grape","strawberry","lime")
 ## Make your first R objects
 * You can create variables from within the R environment and from files on your computer
 * R uses "<-"or "=" to assign values to a variable name
-* Variable names are case-sensitive, i.e. X and x are different
+* Variable names are case-sensitive, i.e. A and a are different
+* Name variables with descriptive names so you remember what they are for
 ```{r make_objects}
-x <- 4 # x is assigned the value of 4. # Same as: x = 4
-x # See what x is
+# num_apples is assigned the value of 4, i.e. there are 4 apples
+num_apples <- 5
+# See what num_apples is:
+num_apples
 
-y <- 7 # y is assigned the value of 7
+# The cost of one apple is $0.55
+cost_apple <- 0.55
 
-x + y # See what x+y is
+# Tax is 7%
+tax <- 0.07
 
-z <- x * (x + y) # z is assigned the value of x*(x+y)
-z # See what z is
+# What is the total cost of the apples without tax? Total cost is assigned to variable: cost_no_tax
+cost_no_tax <- num_apples * cost_apple
+cost_no_tax
+
+# What is the total cost with tax?
+cost_no_tax * (1 + tax)
 ```
 
-# Perform some calculations with 'x' and observe the results
+# Perform some calculations with "num_apples" and observe the results
 You can perform functions on entire vectors of numbers very easily.
 ```{r calculations_vector}
-x + 4
+num_apples + 4
 
-x - 3
+num_apples - 3
 
-x * 7
+num_apples * 7
 
-x / 10
+num_apples / 10
 
-x * x
+num_apples * num_apples
 
-x^2
+num_apples^2
 
-x / x
+num_apples / num_apples
 
-x == x
+num_apples == num_apples
 ```
 
-# Assign a vector of integers from 1 to 4 to the object x, using multiple different functions
+# Assign a vector of integers from 1 to 4 to the object num_apples, using multiple different functions
 * Here we introduce "1 dimensional" classes; often referred to as
     'vectors'
 * The function `c()` collects/combines/joins single R objects into a
@@ -172,47 +181,55 @@ x == x
     lists) and factors, and of any other R object for which a method has
     been defined.
 ```{r make_integer_vector}
-x <- 1:4 # This writes over the previous x object. No warning or error messages!
-x
+length(num_apples) # length is a function for checking how long an object is
 
-length(x) # length is a function for checking how long an object is
+# This writes over the previous num_apples object. No warning or error messages!
+num_apples <- c(1, 2, 3, 4) # Combine elements into a vector
+num_apples
 
-x <- seq(from = 1, to = 4, by = 1) # Create a vector counting from 1 to 4 by 1
-x
+num_apples <- c(2, 3, 4, 1) # Order matters
+num_apples
 
-x <- c(1, 2, 3, 4) # Combine elements into a vector
-x
+num_apples <- 1:4 # Create a vector of numbers 1 to 4 by 1
+num_apples
 
-x <- c(2, 3, 4, 1)
-x
+num_apples <- seq(from = 1, to = 4, by = 1) # Create a vector counting from 1 to 4 by 1
+num_apples
 
-length(x)
+length(num_apples) # How long is the vector
 
-y <- rep(7, times = 4) # Create a vector with four 7's by rep() and assign it to y
-y
+rep_vect_nums <- rep(7, times = 4) # Create a vector with four 7's by rep() and assign it to rep_vect_nums
+rep_vect_nums
 ```
 
 # Make a character vector
 ```{r make_character_vector}
-z <- c("UM",
-       "SPH",
-       "EPI",
-       "Kelly")
+short_names <- c("UM",
+                 "SPH",
+                 "EPI",
+                 "Kelly")
+short_names
 
-z <- c("University of Michigan",
-       "School of Public Health",
-       "Epidemiology",
-       "John Snow")
-z
+pubhlth_names <- c("University of Michigan",
+                   "School of Public Health",
+                   "Epidemiology",
+                   "John Snow")
+pubhlth_names
 ```
 
 ## R variable classes
 * Vectors can have multiple sets of observations, but each observation
     has to be the same class.
 ```{r vector_class}
-class(x)
+class(num_apples)
 
-class(z)
+class(pubhlth_names)
+
+# Can get more information using str()
+str(pubhlth_names)
+# chr is the data type (character)
+# [1:4] is the length (the vector has 4 elements)
+# "University of Michigan"... is a snapshot of the elements in the vector
 ```
 
 ## Use the help viewer
@@ -226,23 +243,24 @@ help(class)
 
 # What are the differences between ( ) and [ ] ?
 ```{r indexing_vector}
-length(z) # Rounded parentheses are for functions
+length(pubhlth_names) # Rounded parentheses are for functions
 
-z[3] # Square brackets are for looking in objects, this is also called "indexing"
+pubhlth_names[3] # Square brackets are for looking in objects, this is also called "indexing"
 
-z[2] # Find value based on position
+pubhlth_names[2] # Find value based on position
 
-z[1:3]
+pubhlth_names[1:3]
 
 
 
 # Find positions meeting criteria
-x < 3 # Provides True/False for whether meets the criteria
+counts <- c(1, 3, 5, 7)
+counts < 4 # Provides True/False for whether meets the criteria
 
-which(x < 3) # Finds the positions of the Trues
+which(counts < 4) # Finds the positions of the Trues
 
 # Find values meeting criteria
-x[x < 3]
+counts[counts < 4]
 ```
 
 # Specify options in a function
@@ -266,49 +284,53 @@ seq(from = -1, to = 11, by = 3) # count from -1 to 11 by 3
 * You can think of these as essentially Excel spreadsheets with rows
     (usually subjects or observations) and columns (usually variables)
 ```{r data_frame}
-# Combine x and y vectors by column into a data frame and assign it to an object called 'df'
-df <- data.frame(x, y, z)
-df # Look at df
+# Combine vectors by column into a data frame and assign it to an object called "apples_pubhlth"
+apples_pubhlth <- data.frame(num_apples, short_names, pubhlth_names)
+apples_pubhlth # Look at apples_pubhlth
+
+# Get information about apples_pubhlth
+str(apples_pubhlth)
 
 # Use $ to call up columns within data frames
-df$x
-df$y
+apples_pubhlth$num_apples
+apples_pubhlth$pubhlth_names
 ```
 
 # Index (look around) inside the data frame based on the position
 ```{r indexing_data_frame}
 #Index based on position
-df[3, 1] # structure: df[rows,columns]
-df[4, ]
-df[, 1]
-df[c(1, 2, 3), ] # Read your R code from the inside out. Start with the innermost set of parentheses.
-df[c(FALSE, TRUE, TRUE, FALSE), ]
+apples_pubhlth[3, 1] # structure: apples_pubhlth[rows,columns]
+apples_pubhlth[4, ]
+apples_pubhlth[ , 1]
+apples_pubhlth[c(1, 2, 3), ] # Read your R code from the inside out. Start with the innermost set of parentheses.
+apples_pubhlth[c(FALSE, TRUE, TRUE, FALSE), ]
 
 #Index based on value
-df$x>2 #Find a logical vector (True/False) of the rows that meet the value of interest (in this case x>2)
-df[, 1] > 2 #Same as above
-which(df[,1]>2) #Find rows that meet the criteria, similar to line above
+apples_pubhlth$num_apples > 2 #Find a logical vector (True/False) of the rows that meet the value of interest (in this case num_apples > 2)
+apples_pubhlth[, 1] > 2 #Same as above
+which(apples_pubhlth[ , 1] > 2) #Find rows that meet the criteria, similar to line above
 
-df[df$x>2,] #Now show the rows that are True
-df[df[, 1] > 2, ]  #Same as above
+apples_pubhlth[apples_pubhlth$num_apples > 2,] #Now show the rows that are True
+apples_pubhlth[apples_pubhlth[, 1] > 2, ]  #Same as above
 ```
 
 
 # Perform calculations on the data frame
 
 ```{r calculations_data_frame}
-sum(df[, 1])
+sum(apples_pubhlth[ , 1])
 
-sum(x)
+sum(num_apples)
 ```
 
 # Recode a value in the data frame based on the position
 ```{r recode}
-df
-df[3, 2] <- 5 # recode a value
+apples_pubhlth
+apples_pubhlth[3, 2] <- 5 # recode a value
 # What do you expect?
 
-df # What do you get?
+# What do you get?
+apples_pubhlth
 
 # Do they match?
 ```
