@@ -324,6 +324,7 @@ sum(num_apples)
 ```
 
 # Recode a value in the data frame based on the position
+
 ```{r recode}
 apples_pubhlth
 apples_pubhlth[3, 2] <- 5 # recode a value
@@ -334,8 +335,34 @@ apples_pubhlth
 
 # Do they match?
 ```
+
+# Pipes!
+* Important part of coding with tidyverse
+
+```{r}
+
+# Reminder of values in num_apples
+num_apples
+
+# This is a pipe: %>%
+
+# Pipes are used to link datasets to function(s)
+num_apples %>%
+  sum()
+
+num_apples %>%
+  mean() %>%
+  length()
+
+# Can save the results to a new object
+median_apples <- num_apples %>%
+  median()
+```
+
+
 # Make a new code chunk
 * +C Insert button at the top of this window next to the Prev/Next chunk arrows and Run button
+
 ```{r}
 
 ```
