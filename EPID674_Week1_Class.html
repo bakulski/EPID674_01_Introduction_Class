@@ -243,7 +243,7 @@ div.tocify {
 <h1 class="title toc-ignore">EPID674 Epidemiologic Data Analysis using R</h1>
 <h3 class="subtitle">Getting Started with R</h3>
 <h4 class="author">Kelly Bakulski</h4>
-<h4 class="date">Last compiled on October 25, 2021</h4>
+<h4 class="date">Last compiled on October 27, 2021</h4>
 
 </div>
 
@@ -258,9 +258,8 @@ div.tocify {
 <p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.</p>
 <p>You can embed an R code chunk like this: Here we load the <code>knitr</code> package into our current R session to make useful functions available.</p>
 </div>
-<div id="chapter-1-getting-started-with-r" class="section level2">
-<h2>Chapter 1, Getting Started with R</h2>
-</div>
+<div id="getting-started-with-r" class="section level1">
+<h1>Getting Started with R</h1>
 <div id="explaining-commandsoutput" class="section level2">
 <h2>Explaining commands/output</h2>
 <p>An R command (we’ll also call it code or a code chunk) will be grey and look like this. The text in this section will be talking to R.</p>
@@ -268,9 +267,15 @@ div.tocify {
 <pre><code>## [1] &quot;I&#39;m code&quot;</code></pre>
 <p>Directly after the code chunk will be the output of the code. The code chunk is <code>print(&quot;I&#39;m code&quot;)</code> and the output is [1] “I’m code”.</p>
 </div>
+<div id="make-a-new-code-chunk" class="section level2">
+<h2>Make a new code chunk</h2>
+<ul>
+<li>+C Insert button at the top of this window next to the Prev/Next chunk arrows and Run button</li>
+</ul>
+</div>
 <div id="r-as-a-calculator" class="section level2">
 <h2>R as a calculator</h2>
-<p>The R console is a full calculator Try to play around with it: + is add, - is subtract, / is divide, * is multiply. ^ or ** is power parentheses ( and ) work with order of operations, meaning the contents of the inner pair will be calculated first.</p>
+<p>The R console is a full calculator Try to play around with it: + is add, - is subtract, / is divide, * is multiply. ^ or ** is power parentheses ( ) work with order of operations, meaning the contents of the inner pair will be calculated first.</p>
 <pre class="r"><code>2 + 2</code></pre>
 <pre><code>## [1] 4</code></pre>
 <pre class="r"><code>2 * 4</code></pre>
@@ -282,49 +287,11 @@ div.tocify {
 <pre class="r"><code>(1 + 3) / 2 + 45</code></pre>
 <pre><code>## [1] 47</code></pre>
 <p>Note, when you type your command, R inherently thinks you want to print the result.</p>
-<p>Test your comprehension: Make an R code chunk and try evaluating the following: 2 + 2 * 3 / 4 -3 2 * 3 / 4 * 2 2^4 - 1</p>
 </div>
-<div id="commenting-in-scripts" class="section level2">
-<h2>Commenting in Scripts</h2>
-<p><code>#</code> is the comment symbol in R</p>
-<pre class="r"><code># Comments in R follow the hashtag symbol
-# Anything from the # to the end of the line (on the right) will be ignored by R. Note the color of your code changes after you use a hashtag
-
-# This # is still a comment
-### You can use many #&#39;s as you want
-1 + 2 # Can be the right of code</code></pre>
-<pre><code>## [1] 3</code></pre>
-<pre class="r"><code># Best practice is to take a ton of notes to help your future self and anyone who comes later to re-run your code</code></pre>
-</div>
-<div id="white-space-in-scripts" class="section level2">
-<h2>White Space in Scripts</h2>
-<pre class="r"><code># Use lots of white space - it makes your code more readable for yourself and others!
-
-
-# Examples:
-
-#1)
-# Spaces after operators
-2 + 2 </code></pre>
-<pre><code>## [1] 4</code></pre>
-<pre class="r"><code>#2)
-# Spaces after commas
-paste(&quot;Hello,&quot;, &quot;welcome&quot;, &quot;to&quot;, &quot;class&quot;)</code></pre>
-<pre><code>## [1] &quot;Hello, welcome to class&quot;</code></pre>
-<pre class="r"><code>#compared to:
-paste(&quot;Hello,&quot;,&quot;welcome&quot;,&quot;to&quot;,&quot;class&quot;)</code></pre>
-<pre><code>## [1] &quot;Hello, welcome to class&quot;</code></pre>
-<pre class="r"><code>#3)
-# New lines
-fruits &lt;- c(&quot;apple&quot;,
-            &quot;pear&quot;,
-            &quot;orange&quot;,
-            &quot;cherry&quot;,
-            &quot;grape&quot;,
-            &quot;strawberry&quot;,
-            &quot;lime&quot;)
-# compared to:
-fruits &lt;- c(&quot;apple&quot;,&quot;pear&quot;,&quot;orange&quot;,&quot;cherry&quot;,&quot;grape&quot;,&quot;strawberry&quot;,&quot;lime&quot;)</code></pre>
+<div id="test-your-comprehension" class="section level2">
+<h2>Test your comprehension:</h2>
+<p>Make an R code chunk and try evaluating the following:<br />
+2 plus 2 times 3 divided by 4 minus 3 2 times 3 divided by 4 times 2 2 to the 4th power minus 1</p>
 </div>
 <div id="make-your-first-r-objects" class="section level2">
 <h2>Make your first R objects</h2>
@@ -353,25 +320,6 @@ cost_no_tax</code></pre>
 cost_no_tax * (1 + tax)</code></pre>
 <pre><code>## [1] 2.9425</code></pre>
 </div>
-<div id="perform-some-calculations-with-num_apples-and-observe-the-results" class="section level1">
-<h1>Perform some calculations with “num_apples” and observe the results</h1>
-<p>You can perform functions on vectors of numbers very easily</p>
-<pre class="r"><code>num_apples + 4</code></pre>
-<pre><code>## [1] 9</code></pre>
-<pre class="r"><code>num_apples - 3</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>num_apples * 7</code></pre>
-<pre><code>## [1] 35</code></pre>
-<pre class="r"><code>num_apples / 10</code></pre>
-<pre><code>## [1] 0.5</code></pre>
-<pre class="r"><code>num_apples * num_apples</code></pre>
-<pre><code>## [1] 25</code></pre>
-<pre class="r"><code>num_apples^2</code></pre>
-<pre><code>## [1] 25</code></pre>
-<pre class="r"><code>num_apples / num_apples</code></pre>
-<pre><code>## [1] 1</code></pre>
-<pre class="r"><code>num_apples == num_apples</code></pre>
-<pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="assign-a-vector-of-integers-from-1-to-4-to-the-object-num_apples-using-multiple-different-functions" class="section level1">
 <h1>Assign a vector of integers from 1 to 4 to the object num_apples, using multiple different functions</h1>
@@ -395,11 +343,8 @@ num_apples</code></pre>
 <pre class="r"><code>num_apples &lt;- seq(from = 1, to = 4, by = 1) # Create a vector counting from 1 to 4 by 1
 num_apples</code></pre>
 <pre><code>## [1] 1 2 3 4</code></pre>
-<pre class="r"><code>length(num_apples) # How long is the vector</code></pre>
+<pre class="r"><code>length(num_apples) # How long is the vector now?</code></pre>
 <pre><code>## [1] 4</code></pre>
-<pre class="r"><code>rep_vect_nums &lt;- rep(7, times = 4) # Create a vector with four 7&#39;s by rep() and assign it to rep_vect_nums
-rep_vect_nums</code></pre>
-<pre><code>## [1] 7 7 7 7</code></pre>
 <div id="make-a-character-vector" class="section level2">
 <h2>Make a character vector</h2>
 <ul>
@@ -419,10 +364,11 @@ fruit_farms</code></pre>
 short_names</code></pre>
 <pre><code>## [1] &quot;Tantre&quot;  &quot;Kapnick&quot; &quot;Wasem&quot;   &quot;Erie&quot;</code></pre>
 </div>
-<div id="r-variable-classes" class="section level2">
-<h2>R variable classes</h2>
+<div id="r-object-classes" class="section level2">
+<h2>R object classes</h2>
 <ul>
 <li>Vectors can have multiple observations, but each observation has to be the same class.</li>
+<li>The functions class() and str() can help you learn about the class and structure of your objects</li>
 </ul>
 <pre class="r"><code>class(num_apples)</code></pre>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
@@ -434,12 +380,6 @@ str(fruit_farms)</code></pre>
 <pre class="r"><code># chr is the data type (character)
 # [1:4] is the length (the vector has 4 elements)
 # &quot;Tantre Farm&quot;... is a snapshot of the elements in the vector</code></pre>
-</div>
-<div id="use-the-help-viewer" class="section level2">
-<h2>Use the help viewer</h2>
-<p>Any time I use a new function, I navigate to the lower right panel and search for the function. This describes the purpose of the function, the default settings, and the options you can change.</p>
-<pre class="r"><code># Another option is to use the &#39;help&#39; function to search. Look in the lower right panel and the same view will appear.
-help(class)</code></pre>
 </div>
 <div id="what-are-the-differences-between-and" class="section level2">
 <h2>What are the differences between ( ) and [ ] ?</h2>
@@ -459,20 +399,6 @@ num_apples &lt; 4 # Provides True/False for whether meets the criteria</code></p
 <pre class="r"><code># Find values meeting criteria
 num_apples[num_apples &lt; 4]</code></pre>
 <pre><code>## [1] 1 2 3</code></pre>
-</div>
-<div id="specify-options-in-a-function" class="section level2">
-<h2>Specify options in a function</h2>
-<pre class="r"><code>seq(from = 10, to = 23, by = 1) # count from 10 to 23 by 1</code></pre>
-<pre><code>##  [1] 10 11 12 13 14 15 16 17 18 19 20 21 22 23</code></pre>
-<pre class="r"><code>seq(from = 10, to = 23) # equivalent</code></pre>
-<pre><code>##  [1] 10 11 12 13 14 15 16 17 18 19 20 21 22 23</code></pre>
-<pre class="r"><code>seq(10, 23) # equivalent</code></pre>
-<pre><code>##  [1] 10 11 12 13 14 15 16 17 18 19 20 21 22 23</code></pre>
-<pre class="r"><code>seq(10, -3) # count from 10 to -3</code></pre>
-<pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1  0 -1 -2 -3</code></pre>
-<pre class="r"><code>seq(from = -1, to = 11, by = 3) # count from -1 to 11 by 3</code></pre>
-<pre><code>## [1] -1  2  5  8 11</code></pre>
-<pre class="r"><code># Note, you have all of the tools to complete homework 1</code></pre>
 </div>
 </div>
 <div id="make-your-first-data-frame" class="section level1">
@@ -528,13 +454,6 @@ apple_farms$num_apples &gt; 2 #Find a logical vector (True/False) of the rows th
 <pre><code>##   num_apples short_names                 fruit_farms
 ## 3          3       Wasem            Wasem Fruit Farm
 ## 4          4        Erie Erie Orchard and Cider Mill</code></pre>
-<div id="perform-calculations-on-the-data-frame" class="section level2">
-<h2>Perform calculations on the data frame</h2>
-<pre class="r"><code>sum(apple_farms$num_apples)</code></pre>
-<pre><code>## [1] 10</code></pre>
-<pre class="r"><code>mean(apple_farms$num_apples)</code></pre>
-<pre><code>## [1] 2.5</code></pre>
-</div>
 <div id="recode-a-value-in-the-data-frame-based-on-the-position" class="section level2">
 <h2>Recode a value in the data frame based on the position</h2>
 <pre class="r"><code>apple_farms</code></pre>
@@ -554,6 +473,46 @@ apple_farms</code></pre>
 ## 3          5       Wasem            Wasem Fruit Farm
 ## 4          4        Erie Erie Orchard and Cider Mill</code></pre>
 <pre class="r"><code># Do they match?</code></pre>
+</div>
+<div id="perform-some-calculations-with-num_apples-and-observe-the-results" class="section level2">
+<h2>Perform some calculations with “num_apples” and observe the results</h2>
+<p>You can perform functions on vectors of numbers very easily</p>
+<pre class="r"><code>num_apples + 4</code></pre>
+<pre><code>## [1] 5 6 7 8</code></pre>
+<pre class="r"><code>num_apples - 3</code></pre>
+<pre><code>## [1] -2 -1  0  1</code></pre>
+<pre class="r"><code>num_apples * 7</code></pre>
+<pre><code>## [1]  7 14 21 28</code></pre>
+<pre class="r"><code>num_apples / 10</code></pre>
+<pre><code>## [1] 0.1 0.2 0.3 0.4</code></pre>
+<pre class="r"><code>num_apples * num_apples</code></pre>
+<pre><code>## [1]  1  4  9 16</code></pre>
+<pre class="r"><code>num_apples^2</code></pre>
+<pre><code>## [1]  1  4  9 16</code></pre>
+<pre class="r"><code>num_apples / num_apples</code></pre>
+<pre><code>## [1] 1 1 1 1</code></pre>
+<pre class="r"><code>num_apples == num_apples</code></pre>
+<pre><code>## [1] TRUE TRUE TRUE TRUE</code></pre>
+</div>
+<div id="specify-options-in-a-function" class="section level2">
+<h2>Specify options in a function</h2>
+<pre class="r"><code>seq(from = 10, to = 23, by = 1) # count from 10 to 23 by 1</code></pre>
+<pre><code>##  [1] 10 11 12 13 14 15 16 17 18 19 20 21 22 23</code></pre>
+<pre class="r"><code>seq(from = 10, to = 23) # equivalent</code></pre>
+<pre><code>##  [1] 10 11 12 13 14 15 16 17 18 19 20 21 22 23</code></pre>
+<pre class="r"><code>seq(10, 23) # equivalent</code></pre>
+<pre><code>##  [1] 10 11 12 13 14 15 16 17 18 19 20 21 22 23</code></pre>
+<pre class="r"><code>seq(10, -3) # count from 10 to -3</code></pre>
+<pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1  0 -1 -2 -3</code></pre>
+<pre class="r"><code>seq(from = -1, to = 11, by = 3) # count from -1 to 11 by 3</code></pre>
+<pre><code>## [1] -1  2  5  8 11</code></pre>
+</div>
+<div id="perform-calculations-on-the-data-frame" class="section level2">
+<h2>Perform calculations on the data frame</h2>
+<pre class="r"><code>sum(apple_farms$num_apples)</code></pre>
+<pre><code>## [1] 12</code></pre>
+<pre class="r"><code>mean(apple_farms$num_apples)</code></pre>
+<pre><code>## [1] 3</code></pre>
 </div>
 <div id="pipes" class="section level2">
 <h2>Pipes!</h2>
@@ -577,12 +536,58 @@ num_apples %&gt;%
 median_apples &lt;- num_apples %&gt;%
   median()</code></pre>
 </div>
+<div id="commenting-in-scripts" class="section level2">
+<h2>Commenting in Scripts</h2>
+<p><code>#</code> is the comment symbol in R</p>
+<pre class="r"><code># Comments in R follow the hashtag symbol
+# Anything from the # to the end of the line (on the right) will be ignored by R. Note the color of your code changes after you use a hashtag
+
+# This # is still a comment
+### You can use many #&#39;s as you want
+1 + 2 # Can be the right of code</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code># Best practice is to take a ton of notes to help your future self and anyone who comes later to re-run your code</code></pre>
 </div>
-<div id="make-a-new-code-chunk" class="section level1">
-<h1>Make a new code chunk</h1>
-<ul>
-<li>+C Insert button at the top of this window next to the Prev/Next chunk arrows and Run button</li>
-</ul>
+<div id="white-space-in-scripts" class="section level2">
+<h2>White Space in Scripts</h2>
+<pre class="r"><code># Use lots of white space - it makes your code more readable for yourself and others!
+
+
+# Examples:
+
+#1)
+# Spaces after operators
+2 + 2 </code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>#2)
+# Spaces after commas
+paste(&quot;Hello,&quot;, &quot;welcome&quot;, &quot;to&quot;, &quot;class&quot;)</code></pre>
+<pre><code>## [1] &quot;Hello, welcome to class&quot;</code></pre>
+<pre class="r"><code>#compared to:
+paste(&quot;Hello,&quot;,&quot;welcome&quot;,&quot;to&quot;,&quot;class&quot;)</code></pre>
+<pre><code>## [1] &quot;Hello, welcome to class&quot;</code></pre>
+<pre class="r"><code>#3)
+# New lines
+fruits &lt;- c(&quot;apple&quot;,
+            &quot;pear&quot;,
+            &quot;orange&quot;,
+            &quot;cherry&quot;,
+            &quot;grape&quot;,
+            &quot;strawberry&quot;,
+            &quot;lime&quot;)
+# compared to:
+fruits &lt;- c(&quot;apple&quot;,&quot;pear&quot;,&quot;orange&quot;,&quot;cherry&quot;,&quot;grape&quot;,&quot;strawberry&quot;,&quot;lime&quot;)</code></pre>
+</div>
+<div id="use-the-help-viewer" class="section level2">
+<h2>Use the help viewer</h2>
+<p>Any time I use a new function, I navigate to the lower right panel and search for the function. This describes the purpose of the function, the default settings, and the options you can change.</p>
+<pre class="r"><code># Another option is to use the &#39;help&#39; function to search. Look in the lower right panel and the same view will appear.
+help(class)</code></pre>
+</div>
+<div id="test-your-comprehension-1" class="section level2">
+<h2>Test your comprehension:</h2>
+<p>You want to create a new numeric vector that repeats the number 7 in the first 4 positions 7 7 7 7 To do this you can use the rep() function. Make a new code chunk. Look up the rep function in the help viewer. Identify the option for the number of times something is repeated. Create this vector and store it as a new object.</p>
+</div>
 <div id="common-new-r-users-frustrations" class="section level2">
 <h2>Common new R users frustrations</h2>
 <ol style="list-style-type: decimal">
@@ -614,6 +619,7 @@ median_apples &lt;- num_apples %&gt;%
 </div>
 <div id="remember-to-save-your-r-script" class="section level1">
 <h1>Remember to save your R script!</h1>
+<p>If the name of the .Rmd at the top of the code editor is in red font with an asterisk at the end, you have unsaved changes.</p>
 </div>
 <div id="to-exit-r" class="section level1">
 <h1>To exit R</h1>
