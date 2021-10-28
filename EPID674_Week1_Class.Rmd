@@ -35,10 +35,11 @@ package into our current R session to make useful functions available.
 
 ```{r setup, include=FALSE}
 library(knitr)
+library(tidyverse)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Chapter 1, Getting Started with R
+# Getting Started with R
 
 ## Explaining commands/output
 
@@ -50,14 +51,21 @@ print("I'm code")
 ```
 
 Directly after the code chunk will be the output of the code.
-So `print("I'm code")` is the code chunk and [1] "I'm code" is the
-output.
+The code chunk is `print("I'm code")` and the output is [1] "I'm code".
+
+## Make a new code chunk
+* +C Insert button at the top of this window next to the Prev/Next chunk arrows and Run button
+
+```{r}
+
+```
+
 
 ## R as a calculator
 
-The R console is a full calculator Try to play around with it: +, -, /,
-* are add, subtract, divide and multiply ^ or ** is power
-parentheses -- ( and ) -- work with order of operations
+The R console is a full calculator Try to play around with it: + is add, - is subtract, / is divide,
+* is multiply. ^ or ** is power
+parentheses ( ) work with order of operations, meaning the contents of the inner pair will be calculated first. 
 
 ```{r calculator_demo}
 2 + 2
@@ -70,12 +78,251 @@ parentheses -- ( and ) -- work with order of operations
 
 (1 + 3) / 2 + 45
 ```
-
 Note, when you type your command, R inherently thinks you want to print
 the result.
 
-Test your comprehension: Make an R code chunk and try evaluating the
-following: 2 + 2 \* 3 / 4 -3 2 \* 3 / 4 \* 2 2\^4 - 1
+## Test your comprehension: 
+Make an R code chunk and try evaluating the following:  
+2 plus 2 times 3 divided by 4 minus 3
+2 times 3 divided by 4 times 2
+2 to the 4th power minus 1
+
+
+
+
+## Make your first R objects
+* You can create objects (variables in your dataset) within the R environment and from files on your computer
+* R uses "<-"or "=" to assign values to a variable name
+* Variable names are case-sensitive, i.e. A and a are different
+* Name variables with descriptive names so you remember what they are for
+
+```{r make_objects}
+# num_apples is assigned the value of 5, i.e. there are 5 apples
+num_apples <- 5
+# See what num_apples is:
+num_apples
+
+# The cost of one apple is $0.55
+cost_apple <- 0.55
+
+# Tax is 7%
+tax <- 0.07
+
+# What is the total cost of the apples without tax? Total cost is assigned to variable: cost_no_tax
+cost_no_tax <- num_apples * cost_apple
+cost_no_tax
+
+# What is the total cost with tax?
+cost_no_tax * (1 + tax)
+```
+
+
+
+# Assign a vector of integers from 1 to 4 to the object num_apples, using multiple different functions
+* Here we introduce "1 dimensional" object classes; referred to as
+    'vectors'
+* The function `c()` collects/combines/joins single R objects into a
+    vector of R objects. It is mostly used for creating vectors of
+    numbers, character strings, and other data types.
+* The function `length()`: Get or set the length of vectors (including
+    lists) and factors, and of any other R object for which a method has
+    been defined.
+    
+```{r make_integer_vector}
+length(num_apples) # length is a function for checking how long an object is
+
+# This writes over the previous num_apples object. No warning or error messages!
+num_apples <- c(1, 2, 3, 4) # Combine elements into a vector
+num_apples
+
+num_apples <- c(2, 3, 4, 1) # Order matters
+num_apples
+
+num_apples <- 1:4 # Create a vector of numbers 1 to 4 by 1
+num_apples
+
+num_apples <- seq(from = 1, to = 4, by = 1) # Create a vector counting from 1 to 4 by 1
+num_apples
+
+length(num_apples) # How long is the vector now?
+```
+
+## Make a character vector
+* Objects can contain character information (words, letters, or combinations). Each character element should be surrounded by quotes " " 
+
+```{r make_character_vector}
+fruit_farms <- c("Tantre Farm",
+                   "Kapnick Orchards",
+                   "Wasem Fruit Farm",
+                   "Erie Orchard and Cider Mill")
+fruit_farms
+
+short_names <- c("Tantre",
+                 "Kapnick",
+                 "Wasem",
+                 "Erie")
+short_names
+```
+
+## R object classes
+* Vectors can have multiple observations, but each observation
+    has to be the same class.
+* The functions class() and str() can help you learn about the class and structure of your objects
+
+```{r vector_class}
+class(num_apples)
+
+class(fruit_farms)
+
+# Can get more information using str()
+str(fruit_farms)
+# chr is the data type (character)
+# [1:4] is the length (the vector has 4 elements)
+# "Tantre Farm"... is a snapshot of the elements in the vector
+```
+
+## What are the differences between ( ) and [ ] ?
+```{r indexing_vector}
+length(fruit_farms) # Rounded parentheses are for functions
+
+fruit_farms[3] # Square brackets are for looking in objects, this is also called "indexing"
+
+fruit_farms[2] # Find value based on position
+
+fruit_farms[1:3]
+
+
+# Find positions meeting criteria
+num_apples < 4 # Provides True/False for whether meets the criteria
+
+which(num_apples < 4) # Finds the positions of the Trues
+
+# Find values meeting criteria
+num_apples[num_apples < 4]
+```
+
+
+# Make your first data frame
+* The most comfortable and familiar class/data type for many of you
+    will be `data.frame`
+* You can think of these as essentially Excel spreadsheets with rows
+    (usually subjects or observations) and columns (usually variables)
+    
+```{r data_frame}
+# Combine vectors by column into a data frame and assign it to an object called "apple_farms"
+apple_farms <- data.frame(num_apples, short_names, fruit_farms)
+apple_farms # Look at apple_farms
+
+# Get information about apple_farms
+str(apple_farms)
+
+# Use $ to call up columns within data frames
+apple_farms$num_apples
+apple_farms$fruit_farms
+```
+
+
+# Index (look around) inside the data frame based on the position
+```{r indexing_data_frame}
+#Index based on position
+apple_farms[3, 1] # structure: apple_farms[rows,columns]
+apple_farms[4, ]
+apple_farms[ , 1]
+apple_farms[c(1, 2, 3), ] # Read your R code from the inside out. Start with the innermost set of parentheses.
+apple_farms[c(FALSE, TRUE, TRUE, FALSE), ]
+
+#Index based on value
+apple_farms$num_apples > 2 #Find a logical vector (True/False) of the rows that meet the value of interest (in this case num_apples > 2)
+
+apple_farms[apple_farms$num_apples > 2,] #Now show the rows that are True
+```
+
+## Recode a value in the data frame based on the position
+
+```{r recode}
+apple_farms
+apple_farms[3, 1] <- 5 # recode a value
+# What do you expect?
+
+# What do you get?
+apple_farms
+
+# Do they match?
+```
+
+
+
+
+## Perform some calculations with "num_apples" and observe the results
+You can perform functions on vectors of numbers very easily
+
+```{r calculations_vector}
+num_apples + 4
+
+num_apples - 3
+
+num_apples * 7
+
+num_apples / 10
+
+num_apples * num_apples
+
+num_apples^2
+
+num_apples / num_apples
+
+num_apples == num_apples
+```
+
+
+
+## Specify options in a function
+```{r options_in_a_function}
+seq(from = 10, to = 23, by = 1) # count from 10 to 23 by 1
+
+seq(from = 10, to = 23) # equivalent
+
+seq(10, 23) # equivalent
+
+seq(10, -3) # count from 10 to -3
+
+seq(from = -1, to = 11, by = 3) # count from -1 to 11 by 3
+```
+
+
+## Perform calculations on the data frame
+
+```{r calculations_data_frame}
+sum(apple_farms$num_apples)
+mean(apple_farms$num_apples)
+```
+
+
+
+## Pipes!
+* Important part of coding with tidyverse using this set of symbols %>%
+
+```{r pipes}
+
+# Reminder of values in num_apples
+num_apples
+
+# This is a pipe: %>%
+
+# Pipes are used to link objects to function(s)
+num_apples %>%
+  sum()
+
+num_apples %>%
+  mean() %>%
+  length()
+
+# Can store the results in a new object
+median_apples <- num_apples %>%
+  median()
+```
+
+
 
 ## Commenting in Scripts
 
@@ -94,7 +341,7 @@ following: 2 + 2 \* 3 / 4 -3 2 \* 3 / 4 \* 2 2\^4 - 1
 
 ## White Space in Scripts
 
-```{r comments}
+```{r white_space}
 # Use lots of white space - it makes your code more readable for yourself and others!
 
 
@@ -125,113 +372,6 @@ fruits <- c("apple",
 fruits <- c("apple","pear","orange","cherry","grape","strawberry","lime")
 ```
 
-
-## Make your first R objects
-* You can create variables from within the R environment and from files on your computer
-* R uses "<-"or "=" to assign values to a variable name
-* Variable names are case-sensitive, i.e. A and a are different
-* Name variables with descriptive names so you remember what they are for
-```{r make_objects}
-# num_apples is assigned the value of 4, i.e. there are 4 apples
-num_apples <- 5
-# See what num_apples is:
-num_apples
-
-# The cost of one apple is $0.55
-cost_apple <- 0.55
-
-# Tax is 7%
-tax <- 0.07
-
-# What is the total cost of the apples without tax? Total cost is assigned to variable: cost_no_tax
-cost_no_tax <- num_apples * cost_apple
-cost_no_tax
-
-# What is the total cost with tax?
-cost_no_tax * (1 + tax)
-```
-
-# Perform some calculations with "num_apples" and observe the results
-You can perform functions on entire vectors of numbers very easily.
-```{r calculations_vector}
-num_apples + 4
-
-num_apples - 3
-
-num_apples * 7
-
-num_apples / 10
-
-num_apples * num_apples
-
-num_apples^2
-
-num_apples / num_apples
-
-num_apples == num_apples
-```
-
-# Assign a vector of integers from 1 to 4 to the object num_apples, using multiple different functions
-* Here we introduce "1 dimensional" classes; often referred to as
-    'vectors'
-* The function `c()` collects/combines/joins single R objects into a
-    vector of R objects. It is mostly used for creating vectors of
-    numbers, character strings, and other data types.
-* The function `length()`: Get or set the length of vectors (including
-    lists) and factors, and of any other R object for which a method has
-    been defined.
-```{r make_integer_vector}
-length(num_apples) # length is a function for checking how long an object is
-
-# This writes over the previous num_apples object. No warning or error messages!
-num_apples <- c(1, 2, 3, 4) # Combine elements into a vector
-num_apples
-
-num_apples <- c(2, 3, 4, 1) # Order matters
-num_apples
-
-num_apples <- 1:4 # Create a vector of numbers 1 to 4 by 1
-num_apples
-
-num_apples <- seq(from = 1, to = 4, by = 1) # Create a vector counting from 1 to 4 by 1
-num_apples
-
-length(num_apples) # How long is the vector
-
-rep_vect_nums <- rep(7, times = 4) # Create a vector with four 7's by rep() and assign it to rep_vect_nums
-rep_vect_nums
-```
-
-# Make a character vector
-```{r make_character_vector}
-short_names <- c("UM",
-                 "SPH",
-                 "EPI",
-                 "Kelly")
-short_names
-
-pubhlth_names <- c("University of Michigan",
-                   "School of Public Health",
-                   "Epidemiology",
-                   "John Snow")
-pubhlth_names
-```
-
-## R variable classes
-* Vectors can have multiple sets of observations, but each observation
-    has to be the same class.
-```{r vector_class}
-class(num_apples)
-
-class(pubhlth_names)
-
-# Can get more information using str()
-str(pubhlth_names)
-# chr is the data type (character)
-# [1:4] is the length (the vector has 4 elements)
-# "University of Michigan"... is a snapshot of the elements in the vector
-```
-
 ## Use the help viewer
 Any time I use a new function, I navigate to the lower right panel and
 search for the function. This describes the purpose of the function, the
@@ -241,131 +381,15 @@ default settings, and the options you can change.
 help(class)
 ```
 
-# What are the differences between ( ) and [ ] ?
-```{r indexing_vector}
-length(pubhlth_names) # Rounded parentheses are for functions
+## Test your comprehension: 
+You want to create a new numeric vector that repeats the number 7 in the first 4 positions
+7 7 7 7
+To do this you can use the rep() function. 
+Make a new code chunk.
+Look up the rep function in the help viewer.
+Identify the option for the number of times something is repeated. 
+Create this vector and store it as a new object. 
 
-pubhlth_names[3] # Square brackets are for looking in objects, this is also called "indexing"
-
-pubhlth_names[2] # Find value based on position
-
-pubhlth_names[1:3]
-
-
-
-# Find positions meeting criteria
-counts <- c(1, 3, 5, 7)
-counts < 4 # Provides True/False for whether meets the criteria
-
-which(counts < 4) # Finds the positions of the Trues
-
-# Find values meeting criteria
-counts[counts < 4]
-```
-
-# Specify options in a function
-```{r options_in_a_function}
-seq(from = 10, to = 23, by = 1) # count from 10 to 23 by 1
-
-seq(from = 10, to = 23) # equivalent
-
-seq(10, 23) # equivalent
-
-seq(10, -3) # count from 10 to -3
-
-seq(from = -1, to = 11, by = 3) # count from -1 to 11 by 3
-
-# Note, you have all of the tools to complete homework 1
-```
-
-# Make your first data frame
-* The most comfortable and familiar class/data type for many of you
-    will be `data.frame`
-* You can think of these as essentially Excel spreadsheets with rows
-    (usually subjects or observations) and columns (usually variables)
-```{r data_frame}
-# Combine vectors by column into a data frame and assign it to an object called "apples_pubhlth"
-apples_pubhlth <- data.frame(num_apples, short_names, pubhlth_names)
-apples_pubhlth # Look at apples_pubhlth
-
-# Get information about apples_pubhlth
-str(apples_pubhlth)
-
-# Use $ to call up columns within data frames
-apples_pubhlth$num_apples
-apples_pubhlth$pubhlth_names
-```
-
-# Index (look around) inside the data frame based on the position
-```{r indexing_data_frame}
-#Index based on position
-apples_pubhlth[3, 1] # structure: apples_pubhlth[rows,columns]
-apples_pubhlth[4, ]
-apples_pubhlth[ , 1]
-apples_pubhlth[c(1, 2, 3), ] # Read your R code from the inside out. Start with the innermost set of parentheses.
-apples_pubhlth[c(FALSE, TRUE, TRUE, FALSE), ]
-
-#Index based on value
-apples_pubhlth$num_apples > 2 #Find a logical vector (True/False) of the rows that meet the value of interest (in this case num_apples > 2)
-apples_pubhlth[, 1] > 2 #Same as above
-which(apples_pubhlth[ , 1] > 2) #Find rows that meet the criteria, similar to line above
-
-apples_pubhlth[apples_pubhlth$num_apples > 2,] #Now show the rows that are True
-apples_pubhlth[apples_pubhlth[, 1] > 2, ]  #Same as above
-```
-
-
-# Perform calculations on the data frame
-
-```{r calculations_data_frame}
-sum(apples_pubhlth[ , 1])
-
-sum(num_apples)
-```
-
-# Recode a value in the data frame based on the position
-
-```{r recode}
-apples_pubhlth
-apples_pubhlth[3, 2] <- 5 # recode a value
-# What do you expect?
-
-# What do you get?
-apples_pubhlth
-
-# Do they match?
-```
-
-# Pipes!
-* Important part of coding with tidyverse
-
-```{r}
-
-# Reminder of values in num_apples
-num_apples
-
-# This is a pipe: %>%
-
-# Pipes are used to link datasets to function(s)
-num_apples %>%
-  sum()
-
-num_apples %>%
-  mean() %>%
-  length()
-
-# Can save the results to a new object
-median_apples <- num_apples %>%
-  median()
-```
-
-
-# Make a new code chunk
-* +C Insert button at the top of this window next to the Prev/Next chunk arrows and Run button
-
-```{r}
-
-```
 
 
 ## Common new R users frustrations
@@ -386,6 +410,7 @@ median_apples <- num_apples %>%
      3)  Do they match?
 
 # Remember to save your R script!
+If the name of the .Rmd at the top of the code editor is in red font with an asterisk at the end, you have unsaved changes.
 
 # To exit R
 
