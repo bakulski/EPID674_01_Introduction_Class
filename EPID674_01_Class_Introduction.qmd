@@ -1,0 +1,420 @@
+---
+title: "EPID674 Epidemiologic Data Analysis using R"
+subtitle: "Getting Started with R"
+author: "Kelly Bakulski, Lauren Middleton"
+date: "Last compiled on `r format(Sys.Date(), '%B %d, %Y')`"
+format: html
+editor: visual
+---
+
+## Programming language: R
+
+This course will introduce the R statistical programming language for epidemiologic analyses. R statistical software is a freely available, versatile, and powerful program for statistical computing and graphics (<https://www.r-project.org/>). A helpful interface for R is provided by RStudio (<http://www.rstudio.com/>). For a shared educational environment in this class, we will use the online version of R and RStudio called RStudio Cloud (<https://rstudio.cloud/>).
+
+## Authoring Software: Quarto
+
+This is a quarto markdown document. Markdown is a simple formatting programming language for authoring HTML, PDF, and Microsoft Word documents. For more details on using quarto Markdown see <https://quarto.org/docs/authoring/markdown-basics.html>.
+
+When you click the **\--\>Render** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+# Getting Started with R
+
+## Explaining commands/output
+
+An R command (we'll also call it code or a code chunk) will be grey and look like this. The text in this section will be talking to R.
+
+```{r}
+#| label: code
+
+print("I'm code")
+```
+
+Directly after the code chunk will be the output of the code. The code chunk is `print("I'm code")` and the output is \[1\] "I'm code".
+
+## Make a new code chunk
+
+You can embed an R code chunk like this: Press the green +C Insert button at the top of this window next to the Run button
+
+```{r}
+
+```
+
+## R as a calculator
+
+The R console is a full calculator. Try to play around with it: + is add, - is subtract, / is divide, \* is multiply. \^ or \*\* is power parentheses ( ) work with order of operations, meaning the contents of the inner pair will be calculated first.
+
+```{r}
+#| label: calculator-demo
+
+2 + 2
+
+2 * 4
+
+2 ^ 3
+
+2 + (2 * 3)^2
+
+(1 + 3) / 2 + 45
+```
+
+Note, when you type your command, R inherently thinks you want to print the result.
+
+## Test your comprehension:
+
+Make an R code chunk and try evaluating the following:\
+2 plus 2 times 3 divided by 4 minus 3 2 times 3 divided by 4 times 2 2 to the 4th power minus 1
+
+## Make your first R objects
+
+-   You can create objects (variables in your dataset) within the R environment and from files on your computer
+-   R uses "\<-"or "=" to assign values to a variable name
+-   Variable names are case-sensitive, i.e. A and a are different
+-   Name variables with descriptive names so you remember what they are for
+
+```{r}
+#| label: make-objects
+
+# num_apples is assigned the value of 5, i.e. there are 5 apples
+num_apples <- 5
+# See what num_apples is:
+num_apples
+
+# The cost of one apple is $0.55
+cost_apple <- 0.55
+
+# Tax is 7%
+tax <- 0.07
+
+# What is the total cost of the apples without tax? Total cost is assigned to variable: cost_no_tax
+cost_no_tax <- num_apples * cost_apple
+cost_no_tax
+
+# What is the total cost with tax?
+cost_no_tax * (1 + tax)
+```
+
+# Assign a vector of integers from 1 to 4 to the object num_apples, using multiple different functions
+
+-   Here we introduce "1 dimensional" object classes; referred to as 'vectors'
+-   The function `c()` collects/combines/joins single R objects into a vector of R objects. It is mostly used for creating vectors of numbers, character strings, and other data types.
+-   The function `length()`: Get or set the length of vectors (including lists) and factors, and of any other R object for which a method has been defined.
+
+```{r}
+#| label: make-integer-vector
+
+length(num_apples) # length is a function for checking how long an object is
+
+
+# This writes over the previous num_apples object. No warning or error messages!
+num_apples <- 1:4 # Create a vector of numbers 1 to 4 by 1
+num_apples
+
+num_apples <- c(1, 2, 3, 4) # Combine elements into a vector
+num_apples
+
+num_apples <- c(2, 3, 4, 1) # Order matters
+num_apples
+
+num_apples <- seq(from = 1, to = 4, by = 1) # Create a vector counting from 1 to 4 by 1
+num_apples
+
+length(num_apples) # How long is the vector now?
+```
+
+## Perform some calculations with "num_apples" and observe the results
+
+You can perform functions on vectors of numbers very easily
+
+```{r}
+#| label: calculations-vector
+
+num_apples + 4
+
+num_apples - 3
+
+num_apples * 7
+
+num_apples / 10
+
+num_apples * num_apples
+
+num_apples^2
+
+num_apples / num_apples
+
+num_apples == num_apples
+```
+
+
+## Make a character vector
+
+Objects can contain character information (words, letters, or combinations). Each character element should be surrounded by quotes " "
+
+```{r}
+#|: label: make-character-vector
+
+fruit_farms <- c("Tantre Farm",
+                   "Kapnick Orchards",
+                   "Wasem Fruit Farm",
+                   "Erie Orchard and Cider Mill")
+fruit_farms
+
+short_names <- c("Tantre",
+                 "Kapnick",
+                 "Wasem",
+                 "Erie")
+short_names
+```
+
+## R object classes
+
+-   Vectors can have multiple observations, but each observation has to be the same class.
+-   The functions class() and str() can help you learn about the class and structure of your objects
+
+```{r vector_class}
+#| label: vector-class
+
+class(num_apples)
+
+class(fruit_farms)
+
+# Can get more information using str()
+str(fruit_farms)
+# chr is the data type (character)
+# [1:4] is the length (the vector has 4 elements)
+# "Tantre Farm"... is a snapshot of the elements in the vector
+```
+
+## What are the differences between ( ) and \[ \] ?
+
+```{r}
+#| label: indexing-vector
+
+length(fruit_farms) # Rounded parentheses are for functions
+
+fruit_farms[3] # Square brackets are for looking in objects, this is also called "indexing"
+
+fruit_farms[2] # Find value based on position
+
+fruit_farms[1:3]
+
+
+# Find positions meeting criteria
+num_apples < 4 # Provides True/False for whether meets the criteria
+
+which(num_apples < 4) # Finds the positions of the Trues
+
+# Find values meeting criteria
+num_apples[num_apples < 4]
+```
+
+# Make your first data frame
+
+-   The most comfortable and familiar class/data type for many of you will be `data.frame`
+-   You can think of these as essentially Excel spreadsheets with rows (usually subjects or observations) and columns (usually variables)
+
+```{r}
+#| label: data-frame
+
+# Combine vectors by column into a data frame and assign it to an object called "apple_farms"
+apple_farms <- data.frame(num_apples, short_names, fruit_farms)
+apple_farms # Look at apple_farms
+
+# Get information about apple_farms
+str(apple_farms)
+
+# Use $ to call up columns within data frames
+apple_farms$num_apples
+apple_farms$fruit_farms
+```
+
+# Index (look around) inside the data frame based on the position
+
+```{r}
+#| label: indexing-data-frame
+
+#Index based on position
+apple_farms[3, 1] # structure: apple_farms[rows,columns]
+apple_farms[4, ]
+apple_farms[ , 1]
+apple_farms[c(1, 2, 3), ] # Read your R code from the inside out. Start with the innermost set of parentheses.
+apple_farms[c(FALSE, TRUE, TRUE, FALSE), ]
+
+#Index based on value
+apple_farms$num_apples > 2 #Find a logical vector (True/False) of the rows that meet the value of interest (in this case num_apples > 2)
+
+apple_farms[apple_farms$num_apples > 2,] #Now show the rows that are True
+```
+
+## Recode a value in the data frame based on the position
+
+```{r}
+#| label: recode
+
+apple_farms
+apple_farms[3, 1] <- 5 # recode a value
+# What do you expect?
+
+# What do you get?
+apple_farms
+
+# Do they match?
+```
+
+
+## Specify options in a function
+
+```{r}
+#| label: options-in-a-function
+
+seq(from = 10, to = 23, by = 1) # count from 10 to 23 by 1
+
+seq(from = 10, to = 23) # equivalent
+
+seq(10, 23) # equivalent
+
+seq(10, -3) # count from 10 to -3
+
+seq(from = -1, to = 11, by = 3) # count from -1 to 11 by 3
+```
+
+## Perform calculations on the data frame
+
+```{r}
+#| label: calculations-data-frame
+
+sum(apple_farms$num_apples)
+mean(apple_farms$num_apples)
+```
+
+## Pipes!
+
+-   Important part of coding with tidyverse using this set of symbols %\>%
+
+```{r}
+#| label: pipes
+
+# Reminder of values in num_apples
+num_apples
+
+# This is a pipe: %>%
+# This pipe is loaded from the tidyverse package
+library(tidyverse)
+
+# Pipes are used to link objects to function(s)
+num_apples %>%
+  sum()
+
+num_apples %>%
+  mean() %>%
+  length()
+
+# Can store the results in a new object
+median_apples <- num_apples %>%
+  median()
+```
+
+## Commenting in Scripts
+
+`#` is the comment symbol in R
+
+```{r}
+#| label: comments
+
+# Comments in R follow the hashtag symbol
+# Anything from the # to the end of the line (on the right) will be ignored by R. Note the color of your code changes after you use a hashtag
+
+# This # is still a comment
+### You can use many #'s as you want
+1 + 2 # Can be the right of code
+
+# Best practice is to take a ton of notes to help your future self and anyone who comes later to re-run your code
+```
+
+## White Space in Scripts
+
+```{r}
+#| label: white-space
+
+# Use lots of white space - it makes your code more readable for yourself and others!
+
+
+# Examples:
+
+#1)
+# Spaces after operators
+2 + 2 
+
+
+#2)
+# Spaces after commas
+paste("Hello,", "welcome", "to", "class")
+#compared to:
+paste("Hello,","welcome","to","class")
+
+
+#3)
+# New lines
+fruits <- c("apple",
+            "pear",
+            "orange",
+            "cherry",
+            "grape",
+            "strawberry",
+            "lime")
+# compared to:
+fruits <- c("apple","pear","orange","cherry","grape","strawberry","lime")
+```
+
+## Use the help viewer
+
+Any time I use a new function, I navigate to the lower right panel and search for the function. This describes the purpose of the function, the default settings, and the options you can change.
+
+```{r}
+#| label: get-help
+
+# Another option is to use the 'help' function to search. Look in the lower right panel and the same view will appear.
+help(class)
+```
+
+## Test your comprehension:
+
+You want to create a new numeric vector that repeats the number 7 in the first 4 positions 7 7 7 7 To do this you can use the rep() function. Make a new code chunk. Look up the rep function in the help viewer. Identify the option for the number of times something is repeated. Create this vector and store it as a new object.
+
+## Common new R users frustrations
+
+1.  Different versions of software
+    -   RStudio Cloud solves this
+2.  Working directory problems: trying to read files that R "can't find"
+    -   RStudio Cloud solves this and so does RStudio Projects
+3.  Data type problems (is that a character or a numeric object?)
+    -   discussed throughout
+4.  Typos (R is **case sensitive**, `x` and `X` are different)
+    -   RStudio helps with "tab completion"
+    -   discussed throughout
+5.  R often does not include any error/warning messages. Need to train yourself in the following sequence:
+    1)  What do I expect?
+    2)  What do I get?
+    3)  Do they match?
+
+# Remember to save your R script!
+
+If the name of the .Rmd at the top of the code editor is in red font with an asterisk at the end, you have unsaved changes.
+
+# To exit R
+
+```{r}
+#| label: exit
+#| eval: false
+
+q()
+```
+
+Click the **Knit** button at the top of this script to run all of the code together and generate a markdown report!
+
+## Review
+
+-   Creating a new script
+-   Using R as a calculator
+-   Assigning values to objects (vectors and data frames)
+-   Performing algebra on numeric variables

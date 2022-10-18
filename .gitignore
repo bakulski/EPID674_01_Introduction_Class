@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# Rmd files
+EPID674_01_Class_Introduction.Rmd
+*.Rmd
