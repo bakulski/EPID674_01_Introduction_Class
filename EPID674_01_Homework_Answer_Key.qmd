@@ -1,0 +1,84 @@
+---
+title: "EPID674 Epidemiologic Data Analysis using R"
+subtitle: "Homework 1"
+author: "Kelly Bakulski"
+date: "Last compiled on `r format(Sys.Date(), '%B %d, %Y')`"
+format: html
+editor: visual
+---
+
+# Problem 1
+
+## 1. What is the boiling point of water (100 oC) in degrees F?
+
+```{r}
+#| label: promblem-1
+
+9/5 * 100 + 32
+
+```
+
+The boiling point of water is `r 9/5*100+32` degrees F.
+
+# Problem 2
+
+## 2. What is today's temperature in degree C? (e.g. 77 oF)
+
+```{r}
+#| label: problem-2
+
+(77 - 32) * 5 / 9 
+
+```
+
+Today’s temperature (assuming 77 degrees F) is `r (77 - 32) * 5 / 9` degrees C.
+
+# Problem 3
+
+## 3. Make a vector 'x' as a series of even numbers from 2 to 20. Make a vector 'y' as a series of integers running from 1 to 10.
+
+Compute x+y, x-y, x\*y, and x/y
+
+```{r}
+#| label: problem-3
+
+x <- c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
+#or 
+x <- seq(2, 20, by=2)
+
+y <- 1:10
+#or
+y <- seq(1, 10)
+
+# compute x+y, x-y, x*y, and x/y
+x + y
+
+x - y
+
+x * y
+
+x / y
+
+```
+
+* The value of x + y is `r x + y`
+* The value of x - y is `r x - y`
+* The value of x times y is `r x * y`
+* The value of x / y is `r x / y`
+
+# Problem 4
+
+## 4. Compute the value of 1\^2 + 2\^2 + 3\^2 + ... + 100\^2
+
+```{r}
+#| label: problem-4
+
+z <- 1:100
+
+z * z
+
+sum(z * z)
+```
+
+
+The value of 1^2 + 2^2 + 3^2 + ... + 100^2 is `r sum(z*z)`
