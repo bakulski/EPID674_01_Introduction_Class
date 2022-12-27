@@ -4,12 +4,12 @@ subtitle: "Getting Started with R"
 author: "Kelly Bakulski, Lauren Middleton"
 date: "Last compiled on `r format(Sys.Date(), '%B %d, %Y')`"
 format: html
-editor: visual
+editor: source
 ---
 
 ## Programming language: R
 
-This course will introduce the R statistical programming language for epidemiologic analyses. R statistical software is a freely available, versatile, and powerful program for statistical computing and graphics (<https://www.r-project.org/>). A helpful interface for R is provided by RStudio (<http://www.rstudio.com/>). For a shared educational environment in this class, we will use the online version of R and RStudio called RStudio Cloud (<https://rstudio.cloud/>).
+This course will introduce the R statistical programming language for epidemiologic analyses. R statistical software is a freely available, versatile, and powerful program for statistical computing and graphics (<https://www.r-project.org/>). A helpful interface for R is provided by Posit (<https://posit.co>). For a shared educational environment in this class, we will use the online version of R and Posit called Posit Cloud (<https://posit.cloud>).
 
 ## Authoring Software: Quarto
 
@@ -33,7 +33,7 @@ Directly after the code chunk will be the output of the code. The code chunk is 
 
 ## Make a new code chunk
 
-You can embed an R code chunk like this: Press the green +C Insert button at the top of this window next to the Run button
+You can embed an R code chunk like this: Press the green +C Insert button at the top of this window near the Run button
 
 ```{r}
 
@@ -59,10 +59,12 @@ The R console is a full calculator. Try to play around with it: + is add, - is s
 
 Note, when you type your command, R inherently thinks you want to print the result.
 
-## Test your comprehension:
+## Check your understanding:
 
-Make an R code chunk and try evaluating the following:\
-2 plus 2 times 3 divided by 4 minus 3 2 times 3 divided by 4 times 2 2 to the 4th power minus 1
+Make an R code chunk and try evaluating each of the following:
+2 plus 2 times 3 divided by 4 minus 3 
+2 times 3 divided by 4 times 2 
+2 to the 4th power minus 1
 
 ## Make your first R objects
 
@@ -145,7 +147,6 @@ num_apples / num_apples
 num_apples == num_apples
 ```
 
-
 ## Make a character vector
 
 Objects can contain character information (words, letters, or combinations). Each character element should be surrounded by quotes " "
@@ -165,6 +166,11 @@ short_names <- c("Tantre",
                  "Erie")
 short_names
 ```
+
+## Check your understanding: vectors
+
+Start by making a new code chunk. Make a new character vector object that contains at least 2 recent books you've read or at least 2 movies you've seen. Name the vector either books or movies, based on the type of information the vector contains. 
+
 
 ## R object classes
 
@@ -237,13 +243,13 @@ apple_farms$fruit_farms
 apple_farms[3, 1] # structure: apple_farms[rows,columns]
 apple_farms[4, ]
 apple_farms[ , 1]
-apple_farms[c(1, 2, 3), ] # Read your R code from the inside out. Start with the innermost set of parentheses.
-apple_farms[c(FALSE, TRUE, TRUE, FALSE), ]
+
 
 #Index based on value
 apple_farms$num_apples > 2 #Find a logical vector (True/False) of the rows that meet the value of interest (in this case num_apples > 2)
 
 apple_farms[apple_farms$num_apples > 2,] #Now show the rows that are True
+# Read your R code from the inside out. Start with the innermost set of parentheses.
 ```
 
 ## Recode a value in the data frame based on the position
@@ -260,7 +266,6 @@ apple_farms
 
 # Do they match?
 ```
-
 
 ## Specify options in a function
 
@@ -284,7 +289,9 @@ seq(from = -1, to = 11, by = 3) # count from -1 to 11 by 3
 #| label: calculations-data-frame
 
 sum(apple_farms$num_apples)
+
 mean(apple_farms$num_apples)
+
 ```
 
 ## Pipes!
@@ -306,8 +313,8 @@ num_apples %>%
   sum()
 
 num_apples %>%
-  mean() %>%
-  length()
+  log() %>%
+  mean()
 
 # Can store the results in a new object
 median_apples <- num_apples %>%
@@ -362,6 +369,7 @@ fruits <- c("apple",
             "grape",
             "strawberry",
             "lime")
+
 # compared to:
 fruits <- c("apple","pear","orange","cherry","grape","strawberry","lime")
 ```
@@ -377,9 +385,10 @@ Any time I use a new function, I navigate to the lower right panel and search fo
 help(class)
 ```
 
-## Test your comprehension:
+## Check your understanding:
 
-You want to create a new numeric vector that repeats the number 7 in the first 4 positions 7 7 7 7 To do this you can use the rep() function. Make a new code chunk. Look up the rep function in the help viewer. Identify the option for the number of times something is repeated. Create this vector and store it as a new object.
+You want to create a new numeric vector that repeats the number 7 in the first 4 positions: 7 7 7 7 
+To do this you can use the rep() function. Make a new code chunk. Look up the rep function in the help viewer. Identify the option for the number of times something is repeated. Create this vector and store it as a new object.
 
 ## Common new R users frustrations
 
@@ -410,7 +419,7 @@ If the name of the .Rmd at the top of the code editor is in red font with an ast
 q()
 ```
 
-Click the **Knit** button at the top of this script to run all of the code together and generate a markdown report!
+Click the **Render** button at the top of this script to run all of the code together and generate a markdown report!
 
 ## Review
 
