@@ -408,7 +408,7 @@ To do this you can use the rep() function. Make a new code chunk. Look up the re
 
 # Remember to save your R script!
 
-If the name of the .Rmd at the top of the code editor is in red font with an asterisk at the end, you have unsaved changes.
+If the name of the .qmd at the top of the code editor is in red font with an asterisk at the end, you have unsaved changes.
 
 # To exit R
 
